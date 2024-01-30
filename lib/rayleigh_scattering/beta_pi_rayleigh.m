@@ -36,9 +36,9 @@ addRequired(p, 'pressure', @isnumeric);
 addRequired(p, 'temperature', @isnumeric);
 addRequired(p, 'C', @isnumeric);
 addRequired(p, 'rh', @isnumeric);
-addParameter(p, 'ASSUME_AIR_IDEAL', default, @ischar);
+addParameter(p, 'ASSUME_AIR_IDEAL', true, @islogical);
 
-parse(p, wavelength, varargin{:});
+parse(p, wavelength, pressure, temperature, C, rh, varargin{:});
 
 dsigma_pi = dsigma_phi_rayleigh(pi, wavelength, pressure, temperature, C, rh);
 N = number_density_at_pt(pressure, temperature, rh, p.Results.ASSUME_AIR_IDEAL);

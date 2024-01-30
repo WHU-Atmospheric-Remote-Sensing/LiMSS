@@ -6,7 +6,7 @@ function [alp] = alpha_rayleigh(wavelength, pressure, temperature, C, rh, vararg
 %
 % INPUTS:
 %    wavelength: float
-%        Wavelegnth [nm]
+%        wavelength [nm]
 %    pressure: float
 %        The atmospheric pressure [hPa]
 %    temperature: float
@@ -38,7 +38,7 @@ addRequired(p, 'C', @isnumeric);
 addRequired(p, 'rh', @isnumeric);
 addParameter(p, 'ASSUME_AIR_IDEAL', true, @islogical);
 
-parse(p, wavelength, varargin{:});
+parse(p, wavelength, pressure, temperature, C, rh, varargin{:});
 
 sigma = sigma_rayleigh(wavelength, pressure, temperature, C, rh);
 N = number_density_at_pt(pressure, temperature, rh, p.Results.ASSUME_AIR_IDEAL);

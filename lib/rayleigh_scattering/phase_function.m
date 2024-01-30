@@ -1,5 +1,5 @@
 function [P] = phase_function(theta, wavelength, pressure, temperature, C, rh)
-% PHASE_FUNCTION Calculates the phase function as angle theta for a specific wavelegnth.
+% PHASE_FUNCTION Calculates the phase function as angle theta for a specific wavelength.
 %
 % USAGE:
 %    [P] = phase_function(theta, wavelength, pressure, temperature, C, rh)

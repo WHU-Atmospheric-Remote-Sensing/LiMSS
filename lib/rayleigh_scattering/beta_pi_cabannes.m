@@ -6,7 +6,7 @@ function [beta_pi] = beta_pi_cabannes(wavelength, pressure, temperature, C, rh, 
 %
 % INPUTS:
 %    wavelength: float
-%        Wavelegnth [nm]
+%        wavelength [nm]
 %    pressure: float
 %        The atmospheric pressure [hPa]
 %    temperature: float
@@ -38,7 +38,7 @@ addParameter(p, 'ASSUME_AIR_IDEAL', true, @islogical);
 
 parse(p, wavelength, pressure, temperature, C, rh, varargin{:});
 
-sigma_pi = sigma_pi_cabannes(wavelegnth, pressure, temperature, C, rh);
+sigma_pi = sigma_pi_cabannes(wavelength, pressure, temperature, C, rh);
 N = number_density_at_pt(pressure, temperature, rh, p.Results.ASSUME_AIR_IDEAL);
 
 beta_pi = N .* sigma_pi;

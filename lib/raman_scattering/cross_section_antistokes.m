@@ -45,7 +45,7 @@ end
 
 g_index = mod(J, 2);
 g = molecular_parameters.g(g_index + 1);
-constants = lidar_mol_toolbox_constants();
+constants = loadConstants();
 
 b_s = 64 * pi^4 * constants.hc_k / 15;
 b_s = b_s * g * B0 * (n_incident + raman_shift_stokes(J, molecular_parameters)).^4 * gamma_square;

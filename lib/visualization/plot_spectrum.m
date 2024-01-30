@@ -24,7 +24,7 @@ function [fh] = plot_spectrum(temperature, varargin)
 %    2022-11-01: first edition by Zhenping
 % .. Authors: - zp.yin@whu.edu.cn
 
-constants = lidar_mol_toolbox_constants();
+constants = loadConstants();
 
 p = inputParser;
 p.KeepUnmatched = true;

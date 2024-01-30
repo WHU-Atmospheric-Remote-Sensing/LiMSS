@@ -1,8 +1,13 @@
+% Test Molecular Depolarization Calculation
+% Author: Zhenping
+% Date: 2024-01-27
+
 clc;
+global LIMSS_ENVS;
 
 %% Parameter Definition
 temperature = 200:2:300;
-wavelegnth = 532;
+wavelength = 532;
 wavelength0 = 532.0;
 FWHM = [0.1, 0.2, 0.5, 1, 2, 3, 5, 10];
 
@@ -10,12 +15,12 @@ FWHM = [0.1, 0.2, 0.5, 1, 2, 3, 5, 10];
 mdr = NaN(length(temperature), length(FWHM));
 for iT = 1:length(temperature)
     for iF = 1:length(FWHM)
-        mdr(iT, iF) = delta_mol_temperature(temperature(iT), wavelegnth, 'wavelength0', wavelength0, 'FWHM', FWHM(iF));
+        mdr(iT, iF) = delta_mol_temperature(temperature(iT), wavelength, 'wavelength0', wavelength0, 'FWHM', FWHM(iF));
     end
 end
 
 %% Data Visualization
-figure('Position', [0, 30, 500, 300], 'Units', 'Pixels', 'Color', 'w');
+figure('Position', [0, 30, 600, 300], 'Units', 'Pixels', 'Color', 'w');
 
 lineInstances = cell(0);
 
@@ -29,6 +34,14 @@ ylabel('Mol. Dep. Ratio');
 title(sprintf('Molecular Depolarization Ratio (%6.1f nm)', wavelength));
 
 set(gca, 'XMinorTick', 'on', 'YMinorTick', 'on', 'FontSize', 11, 'Layer', 'bottom');
+yt = yticks;
+yTickLabels = {};
+for iTick = 1:length(yt)
+    yTickLabels = cat(2, yTickLabels, sprintf('%5.3f', yt(iTick)));
+end
+set(gca, 'YTick', yt, 'YTickLabels', yTickLabels);
 
-l = legend(lineInstances, 'Location', 'northeast');
+l = legend(lineInstances, 'Location', 'eastoutside');
 set(l, 'FontSize', 10);
+
+export_fig(gcf, fullfile(LIMSS_ENVS.RootDir, 'image', 'molecular_depolarization_ratio.png'), '-r300');

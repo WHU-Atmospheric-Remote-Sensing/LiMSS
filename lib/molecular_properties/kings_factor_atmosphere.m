@@ -1,14 +1,12 @@
-function [Fk] = kings_factor_atmosphere(wavelength, varargin)
+function [Fk] = kings_factor_atmosphere(wavelength, C, p_e, p_t)
 % KINGS_FACTOR_ATMOSPHERE Calculate the King's factor for the atmosphere.
 %
 % USAGE:
-%    [Fk] = kings_factor_atmosphere(wavelength)
+%    [Fk] = kings_factor_atmosphere(wavelength, C, p_e, p_t)
 %
 % INPUTS:
 %    wavelength: numeric
 %        wavelength. (nm)
-%
-% KEYWORDS:
 %    C: numeric
 %        CO2 concentration in ppmv.
 %    p_e: numeric
@@ -28,11 +26,11 @@ p = inputParser;
 p.KeepUnmatched = true;
 
 addRequired(p, 'wavelength', @isnumeric);
-addParameter(p, 'C', 300, @isnumeric);
-addParameter(p, 'p_e', 0, @isnumeric);
-addParameter(p, 'p_t', 1013.25, @isnumeric);
+addRequired(p, 'C', @isnumeric);
+addRequired(p, 'p_e', @isnumeric);
+addRequired(p, 'p_t', @isnumeric);
 
-parse(p, wavelength, varargin{:});
+parse(p, wavelength, C, p_e, p_t);
 
 if ~ any((wavelength >= 200) & (wavelength <= 4000))
     error('Kings factor formula is only valid from 0.2 to 4 um.');
@@ -51,8 +49,8 @@ F_H2O = kings_factor_H2O();
 C_N2 = 0.78084;
 C_O2 = 0.20946;
 C_Ar = 0.00934;
-C_CO2 = 1e-6 * p.Results.C;
-C_H2O = p.Results.p_e ./ p.Results.p_t;
+C_CO2 = 1e-6 * C;
+C_H2O = p_e ./ p_t;
 
 C_tot = C_N2 + C_O2 + C_Ar + C_CO2 + C_H2O;
 

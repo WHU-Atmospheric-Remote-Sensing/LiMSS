@@ -9,12 +9,12 @@ function [fh] = plot_fullspectrum(temperature, varargin)
 %        ambient temperature. (K)
 %
 % KEYWORDS:
-%    molecular_parameters: struct
-%        struct containing molecular parameters.
 %    wavelength: numeric
 %        incident wavelength. (nm)
 %    fwhm: numeric
 %        FWHM of the optical filter. (nm)
+%    figFile: char
+%        figure file for saving.
 %
 % OUTPUTS:
 %    fh: figure handle
@@ -31,11 +31,12 @@ p.KeepUnmatched = true;
 addRequired(p, 'temperature', @isnumeric);
 addParameter(p, 'wavelength', 532.0, @isnumeric);
 addParameter(p, 'fwhm', 0.55, @isnumeric);
+addParameter(p, 'figFile', '', @ischar);
 
 parse(p, temperature, varargin{:});
 
 %% Parameter Definition
-constants = lidar_mol_toolbox_constants();
+constants = loadConstants();
 J_stokes = 0:39;
 J_antistokes = 2:39;
 
@@ -147,5 +148,9 @@ set(ax, 'FontSize', 12);
 
 l1 = legend([p1, p3, p5, p7, p9], 'Location', 'NorthEast');
 set(l1, 'FontSize', 8);
+
+if ~ isempty(p.Results.figFile)
+    export_fig(gcf, p.Results.figFile, '-r300');
+end
 
 end

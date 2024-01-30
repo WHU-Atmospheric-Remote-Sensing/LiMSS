@@ -1,4 +1,4 @@
-function [b_s] = cross_section_stokes(n_incident, J, temperature, molecular_parameters)
+function [b_s] = cross_section_stokes(n_incident, J, temperature, molecular_parameters, varargin)
 % CROSS_SECTION_STOKES Calculate the rotational Raman backscattering cross section
 % for the Stokes branch for quantum number J at a temperature T.
 %
@@ -38,14 +38,14 @@ B0 = molecular_parameters.B0;
 gamma_square_input = molecular_parameters.gamma_square;
 
 if isa(gamma_square_input, 'function_handle')
-    gamma_square = gamma_square_input(n_incident);
+    gamma_square = gamma_square_input(n_incident, varargin{:});
 else
     gamma_square = gamma_square_input;
 end
 
 g_index = mod(J, 2);
 g = molecular_parameters.g(g_index + 1);
-constants = lidar_mol_toolbox_constants();
+constants = loadConstants();
 
 b_s = 64 * pi^4 * constants.hc_k / 15;
 b_s = b_s * g * B0 * (n_incident + raman_shift_stokes(J, molecular_parameters)).^4 * gamma_square;

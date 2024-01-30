@@ -39,9 +39,9 @@ addRequired(p, 'temperature', @isnumeric);
 addRequired(p, 'C', @isnumeric);
 addRequired(p, 'Xw', @isnumeric);
 
-parse(p, pressure, temperature, C, Wx);
+parse(p, pressure, temperature, C, Xw);
 
-constants = lidar_mol_toolbox_constants();
+constants = loadConstants();
 
 Ma = molar_mass_dry_air(C);
 Mw = 0.018015;
@@ -54,6 +54,6 @@ T = temperature;
 rho = P .* Ma ./ (Z .* constants.R .* T) .* (1 - Xw .* (1 - Mw ./ Ma));
 
 rho_air = (1 - Xw) .* P .* Ma ./ (Z .* constants.R .* T);
-rho_wv = Xw .* Mw ./ (z .* constants.R .* T);
+rho_wv = Xw .* Mw ./ (Z .* constants.R .* T);
 
 end

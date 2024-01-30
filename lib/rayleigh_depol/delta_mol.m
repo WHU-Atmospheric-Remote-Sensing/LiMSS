@@ -1,4 +1,4 @@
-function [delta_m] = delta_mol(n_incident, molecular_parameters, relative_transmissions)
+function [delta_m] = delta_mol(n_incident, molecular_parameters, relative_transmissions, varargin)
 % DELTA_MOL Calculates the depoalrization ratio of the molecular signal detected by a lidar.
 %
 % USAGE:
@@ -42,7 +42,7 @@ for iParam = 1:length(molecular_parameters)
     end
 
     if isa(molecular_parameters{iParam}.gamma_square, 'function_handle')
-        gamma_squares = cat(2, gamma_squares, molecular_parameters{iParam}.gamma_square(n_incident));
+        gamma_squares = cat(2, gamma_squares, molecular_parameters{iParam}.gamma_square(n_incident, varargin{:}));
     else
         gamma_squares = cat(2, gamma_squares, molecular_parameters{iParam}.gamma_square);
     end

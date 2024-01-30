@@ -6,7 +6,7 @@ function [sig] = sigma_rayleigh(wavelength, pressure, temperature, C, rh, vararg
 %
 % INPUTS:
 %    wavelength: float
-%        Wavelegnth [nm]
+%        wavelength [nm]
 %    pressure: float
 %        The atmospheric pressure [hPa]
 %    temperature: float

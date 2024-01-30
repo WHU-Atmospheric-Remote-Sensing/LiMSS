@@ -33,7 +33,7 @@ else
 end
 
 p_pa = pressure * 100.;   % Pressure in pascal
-const = lidar_mol_toolbox_constants();
+const = loadConstants();
 n = p_pa ./ (Z * temperature * const.k_b);
 
 end

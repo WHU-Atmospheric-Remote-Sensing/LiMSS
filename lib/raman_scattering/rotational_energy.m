@@ -31,7 +31,7 @@ parse(p, J, molecular_parameters);
 B0 = molecular_parameters.B0;
 D0 = molecular_parameters.D0;
 
-constants = lidar_mol_toolbox_constants();
+constants = loadConstants();
 
 E_rot = (B0 * J * (J + 1) - D0 * J.^2 * (J + 1).^2) * constants.hc;
 

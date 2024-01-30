@@ -1,14 +1,12 @@
-function [rho] = rho_atmosphere(wavelength, varargin)
+function [rho] = rho_atmosphere(wavelength, C, P_e, p_t)
 % RHO_ATMOSPHERE Calculate the depolarization factor of the atmosphere.
 %
 % USAGE:
-%    [rho] = rho_atmosphere(wavelength)
+%    [rho] = rho_atmosphere(wavelength, C, P_e, p_t)
 %
 % INPUTS:
 %    wavelength: numeric
 %        wavelength in nm.
-%
-% KEYWORDS:
 %    C: numeric
 %        CO2 concentration in ppmv.
 %    p_e: numeric
@@ -24,7 +22,7 @@ function [rho] = rho_atmosphere(wavelength, varargin)
 %    2022-10-31: first edition by Zhenping
 % .. Authors: - zp.yin@whu.edu.cn
 
-F_k = kings_factor_atmosphere(wavelength, varargin{:});
+F_k = kings_factor_atmosphere(wavelength, C, P_e, p_t);
 
 rho = (6 * F_k - 6) ./ (7 * F_k + 3);
 
