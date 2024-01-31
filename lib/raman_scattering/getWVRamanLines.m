@@ -12,7 +12,7 @@ function [wvRamanLines, outWL] = getWVRamanLines(inWL, temperature)
 %
 % OUTPUTS:
 %    wvRamanLines: numeric
-%        Raman differential backscatter cross section of each line (m sr-1)
+%        Raman differential backscatter cross section of each line (m2 sr-1)
 %    outWL: numeric
 %        Raman wavelength of each line. (m)
 %

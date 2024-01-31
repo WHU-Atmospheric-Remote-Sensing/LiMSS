@@ -10,7 +10,7 @@ function [Ma] = molar_mass_dry_air(C)
 %
 % OUTPUTS:
 %    Ma： numeric
-%        Molar mass of dry air. (km/mol)
+%        Molar mass of dry air. (kg/mol)
 %
 % HISTORY:
 %    2022-11-01: first edition by Zhenping

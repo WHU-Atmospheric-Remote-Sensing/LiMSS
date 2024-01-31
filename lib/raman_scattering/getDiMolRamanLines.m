@@ -33,7 +33,7 @@ function [outSigma, outWL] = getDiMolRamanLines(inWL, T, varargin)
 %
 % OUTPUTS:
 %    outSigma: numeric
-%        backscatter cross section. (m-2sr-1)
+%        backscatter cross section. (m2sr-1)
 %    outWL: numeric
 %        Raman scattering wavelength. (nm)
 %
