@@ -14,7 +14,7 @@ LiMSS工具箱提供针对大气激光雷达的分子散射特性仿真，包括
 如果使用`git`，可以利用以下指令进行下载：
 
 ```bash
-git clone https://github.com/ZPYin/LiMSS.git
+git clone https://github.com/WHU-Atmospheric-Remote-Sensing/LiMSS.git
 ```
 
 ## 运行
@@ -36,7 +36,7 @@ git clone https://github.com/ZPYin/LiMSS.git
 
 ## bug异常反馈
 
-有运行异常，请在[Issues](https://github.com/ZPYin/LiMSS/issues)中进行反馈。
+有运行异常，请在[Issues](https://github.com/WHU-Atmospheric-Remote-Sensing/LiMSS/issues)中进行反馈。
 反馈模板：
 
 ```txt
