@@ -70,7 +70,7 @@ for iJ = 1:length(J_antistokes)
     ds_antistokes_N2 = cat(2, ds_antistokes_N2, cross_section_stokes(wavenumber, J_antistokes(iJ), temperature, constants.N2_parameters, varargin{:}));
 end
 
-x_N2 = (sum(filterFunc(dl_stokes_N2, p.Results.wavelength0, p.Results.fwhm) .* ds_stokes_N2) + sum(filterFunc(dl_antistokes_N2, p.Results.wavelength0, p.Results.fwhm .* ds_antistokes_N2))) / (sum(ds_stokes_N2) + sum(ds_antistokes_N2));
+x_N2 = (sum(filterFunc(dl_stokes_N2, p.Results.wavelength0, p.Results.fwhm) .* ds_stokes_N2) + sum(filterFunc(dl_antistokes_N2, p.Results.wavelength0, p.Results.fwhm) .* ds_antistokes_N2)) / (sum(ds_stokes_N2) + sum(ds_antistokes_N2));
 
 % O2
 dn_stokes_O2 = [];
@@ -94,7 +94,7 @@ for iJ = 1:length(J_antistokes)
     ds_antistokes_O2 = cat(2, ds_antistokes_O2, cross_section_stokes(wavenumber, J_antistokes(iJ), temperature, constants.O2_parameters, varargin{:}));
 end
 
-x_O2 = (sum(filterFunc(dl_stokes_O2, p.Results.wavelength0, p.Results.fwhm) .* ds_stokes_O2) + sum(filterFunc(dl_antistokes_O2, p.Results.wavelength0, p.Results.fwhm .* ds_antistokes_O2))) / (sum(ds_stokes_O2) + sum(ds_antistokes_O2));
+x_O2 = (sum(filterFunc(dl_stokes_O2, p.Results.wavelength0, p.Results.fwhm) .* ds_stokes_O2) + sum(filterFunc(dl_antistokes_O2, p.Results.wavelength0, p.Results.fwhm) .* ds_antistokes_O2)) / (sum(ds_stokes_O2) + sum(ds_antistokes_O2));
 
 % Depolarization ratio
 delta_m = delta_mol(wavenumber, {constants.N2_parameters, constants.O2_parameters}, [x_N2, x_O2], varargin{:});

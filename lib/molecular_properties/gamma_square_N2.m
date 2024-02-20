@@ -29,7 +29,7 @@ addParameter(p, 'ignore_range', false, @islogical);
 parse(p, wavenumber, varargin{:});
 
 if ~ p.Results.ignore_range
-    if any((wavenumber > 50000) | (wavenumber < 10000))
+    if any((wavenumber > 50000) | (wavenumber < 1000))
         error('The empirical formula for gamma-squared is valid only between 200 nm and 1000 nm');
     end
 end

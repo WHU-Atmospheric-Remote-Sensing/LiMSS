@@ -7,9 +7,9 @@ global LIMSS_ENVS;
 
 %% Parameter Definition
 temperature = 200:2:300;
-wavelength = 532;
-wavelength0 = 532.0;
-FWHM = [0.1, 0.2, 0.5, 1, 2, 3, 5, 10];
+wavelength = 1064;
+wavelength0 = 1064.0;
+FWHM = [0.1, 0.3, 0.5, 0.6, 1, 2, 3, 5, 7, 10, 15];
 
 %% Calculation
 mdr = NaN(length(temperature), length(FWHM));
@@ -45,3 +45,11 @@ l = legend(lineInstances, 'Location', 'eastoutside');
 set(l, 'FontSize', 10);
 
 export_fig(gcf, fullfile(LIMSS_ENVS.RootDir, 'image', 'molecular_depolarization_ratio.png'), '-r300');
+
+%% Output Results
+fprintf('Molecular Depolarization Ratio (MDR) Calculation\n');
+fprintf('incident light wavelength: %f nm\n', wavelength);
+fprintf('FWHM (nm); MDR (@%f K)\n', temperature(1));
+for iFWHM = 1:size(mdr, 2)
+    fprintf('%f %f\n', FWHM(iFWHM), mdr(1, iFWHM));
+end
