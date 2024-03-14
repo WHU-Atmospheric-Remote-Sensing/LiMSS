@@ -133,7 +133,7 @@ if p.Results.showFigure
     ylabel(sprintf('Backscatter Cross Section (10^{-33} cm^2sr^{-1})'));
     title(sprintf('Raman spectra of %s at %6.2fK', p.Results.molecular, T));
 
-    set(gca, 'yscale', 'log', 'XMinorTick', 'on', 'YTick', 10.^(-4:1:3), 'YMinorTick', 'on', 'Box', 'on', 'FontSize', 11);
+    set(gca, 'yscale', 'log', 'XMinorTick', 'on', 'YTick', 10.^(-8:2:3), 'YMinorTick', 'on', 'Box', 'on', 'FontSize', 11);
 end
 
 end
