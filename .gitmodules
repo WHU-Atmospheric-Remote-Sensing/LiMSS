@@ -1,0 +1,6 @@
+[submodule "include/export_fig"]
+	path = include/export_fig
+	url = https://github.com/altmany/export_fig.git
+[submodule "include/meteorToolbox"]
+	path = include/meteorToolbox
+	url = https://github.com/ZPYin/meteorToolbox.git
