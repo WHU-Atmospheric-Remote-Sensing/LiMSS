@@ -851,6 +851,6 @@ paramsTable = [...
     inWN = 1 / inWL;   % wavenumber of incident light. (m-1)
     outWN = paramsTable(isSymMode, 1) * 100;
     outWL = 1 ./ (inWN - outWN);   % emission wavelength. (m)
-    wvRamanLines = (inWN - outWN).^4 .* exp(-paramsTable(isSymMode, end - 2) *  1.986e-23 ./ (const.k_b * temperature)) ./ wv_Z_T_func(temperature) .* paramsTable(isSymMode, end - 1) * 1e-4;   % eq. 15 in ref[1]
+    wvRamanLines = (inWN - outWN).^4 .* exp(-paramsTable(isSymMode, end - 2) *  1.986e-23 ./ (const.k_b * temperature)) ./ wv_Z_T_func(temperature) .* paramsTable(isSymMode, end - 1);   % eq. 15 in ref[1]
 
 end
