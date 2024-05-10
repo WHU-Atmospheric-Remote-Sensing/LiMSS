@@ -35,6 +35,6 @@ Tc = temperature - 273.15;   % in C
 
 Xw = molar_fraction;
 
-Z = 1 - (P ./ T) .* (a0 + a1 * Tc + a2 * Tc.^2 + (b0 + b1 * Tc) .* Xw + (c0 + c1 * Tc) .* Xw.^2) + (P / T).^2 * (d0 + d1 * Xw.^2);
+Z = 1 - (P ./ T) .* (a0 + a1 * Tc + a2 * Tc.^2 + (b0 + b1 * Tc) .* Xw + (c0 + c1 * Tc) .* Xw.^2) + (P ./ T).^2 .* (d0 + d1 * Xw.^2);
 
 end
