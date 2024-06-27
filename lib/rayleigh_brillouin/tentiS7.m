@@ -44,15 +44,15 @@ const.k_B = 1.380649e-23; % (J/K, or Pa m^3/K)
 const.c = 299792458; % (m/s) (exact)  
 const.N_A = 6.022E23; % (/mol) Avagadros number
 const.M = 28.97E-3; % (kg/mol) air molecular mass per mol 
-const.m = const.M./const.N_A; % (kg) mass of a air molecule
+const.m = const.M ./ const.N_A; % (kg) mass of a air molecule
 
 % set laser parameters
-angle=(180)*(pi/180);  % Set at 180 for backscatter
+angle = (180)*(pi/180);  % Set at 180 for backscatter
 
 % The Matlab File Exchange version had an error.  The k term needed to use angle/2 
-k=sin(angle/2)*4*pi/lambda;
+k = sin(angle / 2) * 4 * pi / lambda;
 % compute most probable gas velocity
-v0=sqrt(2*const.k_B*tem/const.m);
+v0 = sqrt(2 * const.k_B * tem / const.m);
 
 % create the domain of xi
 xi = 2 * pi * (const.c ./ wlSca - const.c ./ lambda) ./ (sqrt(2) * k * v0);
@@ -69,29 +69,29 @@ xi = 2 * pi * (const.c ./ wlSca - const.c ./ lambda) ./ (sqrt(2) * k * v0);
 % set N2 gas quantities
 %m_m=(1.66053886e-27)*28.013;
 %viscosity=17.63e-6; 
-   T_0 = 273; % K
-   eta_0 = 1.716e-5; %Pa s
-   S_eta = 111; %K
-   viscosity= eta_0*(tem/T_0)^(3/2)*(T_0+S_eta)/(tem+S_eta); % Sutherland law
+T_0 = 273; % K
+eta_0 = 1.716e-5; %Pa s
+S_eta = 111; %K
+viscosity = eta_0 * (tem / T_0)^(3/2) * (T_0 + S_eta) / (tem+S_eta); % Sutherland law
 %bulk_vis=viscosity*0.73; 
-    %  bulk_vis=viscosity*0.71; % used by Luke Colberg/MSU
-     bulk_vis=0.86e-5+(1.29e-7*(tem-250)); % Wang et al. Molecular Physics 2021
+%  bulk_vis=viscosity*0.71; % used by Luke Colberg/MSU
+bulk_vis = 0.86e-5 + (1.29e-7 * (tem-250)); % Wang et al. Molecular Physics 2021
 %thermal_cond=25.2e-3;
-     kappa_0 = 0.0241; % 1W/m K
-     S_th = 194; %K
-     thermal_cond=kappa_0*(tem/T_0)^(3/2)*(T_0+S_th)/(tem+S_th); % Sutherland law
-c_int=1.0;
+kappa_0 = 0.0241; % 1W/m K
+S_th = 194; %K
+thermal_cond = kappa_0 * (tem / T_0)^(3/2) * (T_0 + S_th) / (tem + S_th); % Sutherland law
+c_int = 1.0;
 % convert pressures and densities
-n0=p_pa/(tem*const.k_B);
+n0 = p_pa / (tem * const.k_B);
 % compute and set RBS model input parameters
-c_tr=3/2;
-y=n0*const.k_B*tem/(k*v0*viscosity);
-gamma_int=c_int/(c_tr+c_int);
-rlx_int=1.5*bulk_vis/(viscosity*gamma_int);
-eukenf=const.m*thermal_cond/(viscosity*const.k_B*(c_tr+c_int));
+c_tr = 3/2;
+y = n0 * const.k_B * tem / (k * v0 * viscosity);
+gamma_int = c_int / (c_tr + c_int);
+rlx_int = 1.5 * bulk_vis / (viscosity * gamma_int);
+eukenf = const.m * thermal_cond / (viscosity * const.k_B * (c_tr + c_int));
 % run the code
 %[cohsig7,sptsig7]=crbs7(y,rlx_int,eukenf,c_int,c_tr,xi);
-[cohsig6,sptsig6]=crbs6(y,rlx_int,eukenf,c_int,c_tr,xi);
+[~, sptsig6] = crbs6(y, rlx_int, eukenf, c_int, c_tr, xi);
 % OUTPUTS-
 % **cohsig7: coherent RBS spectrum using s7 model**
 % **cohsig6: coherent RBS spectrum using s6 model**

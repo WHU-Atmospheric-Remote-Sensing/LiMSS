@@ -17,7 +17,7 @@ function [wvRamanLines, outWL] = getWVRamanLines(inWL, temperature)
 %        Raman wavelength of each line. (m)
 %
 % REFERENCES:
-%    1.	Avila, G.; Fern¨¢ndez, J.M.; Tejeda, G.; Montero, S. The Raman spectra and cross-sections of H2O, D2O, and HDO in the OH/OD stretching regions. Journal of Molecular Spectroscopy 2004, 228, 38-65, doi:https://doi.org/10.1016/j.jms.2004.06.012.
+%    [1] Avila, G.; Fern¨¢ndez, J.M.; Tejeda, G.; Montero, S. The Raman spectra and cross-sections of H2O, D2O, and HDO in the OH/OD stretching regions. Journal of Molecular Spectroscopy 2004, 228, 38-65, doi:https://doi.org/10.1016/j.jms.2004.06.012.
 %
 % HISTORY:
 %    2024-01-25: first edition by Zhenping
@@ -846,11 +846,11 @@ paramsTable = [...
             4279.806 9 6 4 001 7 5 2 1059.836 2.38E-59 1.79E-59 ...
             ];
 
-    const = loadConstants();
-    isSymMode = (paramsTable(:, 5) == 100) | (paramsTable(:, 5) == 1);   % determine symmetric and asymmetric stretching mode
-    inWN = 1 / inWL;   % wavenumber of incident light. (m-1)
-    outWN = paramsTable(isSymMode, 1) * 100;
-    outWL = 1 ./ (inWN - outWN);   % emission wavelength. (m)
-    wvRamanLines = (inWN - outWN).^4 .* exp(-paramsTable(isSymMode, end - 2) *  1.986e-23 ./ (const.k_b * temperature)) ./ wv_Z_T_func(temperature) .* paramsTable(isSymMode, end - 1);   % eq. 15 in ref[1]
+const = loadConstants();
+isSymMode = (paramsTable(:, 5) == 100) | (paramsTable(:, 5) == 1);   % determine symmetric and asymmetric stretching mode
+inWN = 1 / inWL;   % wavenumber of incident light. (m-1)
+outWN = paramsTable(isSymMode, 1) * 100;
+outWL = 1 ./ (inWN - outWN);   % emission wavelength. (m)
+wvRamanLines = (inWN - outWN).^4 .* exp(-paramsTable(isSymMode, end - 2) *  1.986e-23 ./ (const.k_b * temperature)) ./ wv_Z_T_func(temperature) .* paramsTable(isSymMode, end - 1);   % eq. 15 in ref[1]
 
 end

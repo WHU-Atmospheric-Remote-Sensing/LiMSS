@@ -32,7 +32,7 @@ git submodule update   # 这里有的submodules是私人模块，可能需要授
 - test_delta_m: 仿真分子偏振散射截面
 - test_Rayleigh_Scattering: 仿真分子瑞利散射截面
 - test_rotational_Raman: 仿真分子转动拉曼散射截面
-- test_tentiS6: 仿真分子瑞丽布里渊谱
+- test_tentiS6: 仿真分子瑞利布里渊谱
 - test_vibrational_Raman: 仿真分子振转拉曼散射截面
 - test_WV_Raman: 仿真水汽分子拉曼散射截面
 

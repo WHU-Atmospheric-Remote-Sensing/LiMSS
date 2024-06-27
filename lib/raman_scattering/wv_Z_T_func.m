@@ -13,7 +13,7 @@ function [ZT] = wv_Z_T_func(temperature)
 %        partition function of H2O
 %
 % REFERENCES:
-%    1.	Avila, G.; Tejeda, G.; Fern¨¢ndez, J.M.; Montero, S. The rotational Raman spectra and cross sections of H2O, D2O, and HDO. Journal of Molecular Spectroscopy 2003, 220, 259-275, doi:https://doi.org/10.1016/S0022-2852(03)00123-1.
+%    [1] Avila, G.; Tejeda, G.; Fern¨¢ndez, J.M.; Montero, S. The rotational Raman spectra and cross sections of H2O, D2O, and HDO. Journal of Molecular Spectroscopy 2003, 220, 259-275, doi:https://doi.org/10.1016/S0022-2852(03)00123-1.
 %
 % HISTORY:
 %    2024-01-25: first edition by Zhenping
